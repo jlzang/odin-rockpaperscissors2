@@ -4,13 +4,6 @@ function getComputerChoice() {
     return randomComputerChoice;
 }
 
-let computerSelection = getComputerChoice;
-console.log(computerSelection());
-console.log(computerSelection());
-console.log(computerSelection());
-console.log(computerSelection());
-console.log(computerSelection());
-
 function getPlayerChoice() {
     let playerChoice = prompt("Rock, paper, or scissors?").toLowerCase();
     if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
@@ -20,11 +13,12 @@ function getPlayerChoice() {
     }
 }
 
-let playerSelection = getPlayerChoice;
+
+let roundWin;
+let roundLose;
+
 
 function playRound(playerSelection, computerSelection) {
-    getPlayerChoice();
-    getComputerChoice();
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
             console.log("Rock and rock. It's a tie!")
@@ -57,15 +51,18 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
- 
-/*function game() {
+
+let playerSelection = getPlayerChoice();
+let computerSelection = getComputerChoice();
+
+function game() {
     roundWin = 0;
     roundLose = 0;
-    playRound(playerSelection, computerSelection);
-    playRound(playerSelection, computerSelection);
-    playRound(playerSelection, computerSelection);
-    playRound(playerSelection, computerSelection);
-    playRound(playerSelection, computerSelection);
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
+    console.log(playRound(getPlayerChoice(), getComputerChoice()));
     if (roundWin > roundLose) {
         console.log("You won the best of 5! Woohoo!")
     } else if (roundWin < roundLose) {
@@ -75,4 +72,4 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-game(); */
+game();
