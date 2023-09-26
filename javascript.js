@@ -82,3 +82,7 @@ game();
 
 let playerSelection = getPlayerChoice;
 let computerSelection = getComputerChoice();
+
+/* Things to add in future:
+Looping game() that continues until roundWin + roundLose + roundTie = 5
+Disallow undefined as a valid answer. Currently undefined round still counts towards total 5 rounds*/
