@@ -19,7 +19,6 @@ function getPlayerChoice() {
     }
 }
 
-
 let roundWin = 0;
 let roundLose = 0;
 let roundTie = 0;
@@ -82,4 +81,4 @@ function game() {
 game();
 
 let playerSelection = getPlayerChoice;
-let computerSelection = getComputerChoice();
+let computerSelection = getComputerChoice(); */
