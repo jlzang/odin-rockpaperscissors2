@@ -81,4 +81,4 @@ function game() {
 game();
 
 let playerSelection = getPlayerChoice;
-let computerSelection = getComputerChoice(); */
+let computerSelection = getComputerChoice();
