@@ -1,62 +1,67 @@
+let result = document.querySelector("#result");
+result.textContent = "Good luck!";
+
+let computerScore = 0;
+let playerScore = 0;
+
+let score = document.querySelector("#score");
+score.textContent = "Computer: 0 points | Player: 0 points";
+
+const btns = document.querySelector("#btns");
+btns.addEventListener('click', (event) => {
+    let playerSelection = event.target.value;
+    let computerSelection = getComputerChoice();
+    let roundResult = playRound(playerSelection, computerSelection);
+    result.textContent = roundResult;
+    if (roundResult === `The computer chose ${computerSelection}. ${capitalize(playerSelection)} beats ${computerSelection}. You win!`) {
+        playerScore++;
+    } else if (roundResult === `The computer chose ${computerSelection}. ${capitalize(computerSelection)} beats ${playerSelection}. You lose!`) {
+        computerScore++;
+    };
+    score.textContent = `Computer: ${computerScore} points | Player: ${playerScore} points`;
+});
+
+function updateScore() {
+
+}
+
 function getComputerChoice() {
     const computerChoices = ["rock", "paper", "scissors"];
     let randomComputerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     return randomComputerChoice;
-}
+};
 
-function getPlayerChoice() {
-    let playerChoice = prompt("Rock, paper, or scissors?");
-    if (typeof playerChoice === "string") {
-        let lowerPlayerChoice = playerChoice.toLowerCase();
-        if (lowerPlayerChoice === "rock" || lowerPlayerChoice === "paper" || lowerPlayerChoice === "scissors") {
-        return lowerPlayerChoice;
-        } else {
-            alert("Invalid input, please try again!");
-        }
-    } else {
-        playerChoice = ""
-        alert("Invalid input, please try again!");
-    }
-}
-
-let roundWin = 0;
-let roundLose = 0;
-let roundTie = 0;
-
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
 function playRound(playerSelection, computerSelection) {
+    let tie = `The computer also chose ${computerSelection}. It's a tie!`;
+    let win = `The computer chose ${computerSelection}. ${capitalize(playerSelection)} beats ${computerSelection}. You win!`;
+    let lose = `The computer chose ${computerSelection}. ${capitalize(computerSelection)} beats ${playerSelection}. You lose!`;
     if (playerSelection === "rock") {
         if (computerSelection === "rock") {
-            console.log("Rock and rock. It's a tie!");
-            return roundTie += 1;
+            return tie;
         } else if (computerSelection === "paper") {
-            console.log("Paper beats rock! get rekt");
-            return roundLose += 1;
+            return lose;
         } else if (computerSelection === "scissors") {
-            console.log("Rock beats scissors! One point for you.");
-            return roundWin += 1;
+            return win;
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            console.log("Paper beats rock! Yey.");
-            return roundWin += 1;
+            return win;
         } else if (computerSelection === "paper") {
-            console.log("Paper and paper. It's a tie!");
-            return roundTie += 1;
+            return tie;
         } else if (computerSelection === "scissors") {
-            console.log("Scissors beats paper. Oof.");
-            return roundLose += 1;
+            return lose;
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "rock") {
-            console.log("Rock beats scissors! What a tragedy.");
-            return roundLose += 1;
+            return lose;
         } else if (computerSelection === "paper") {
-            console.log("Scissors beats paper! Good job.");
-            return roundWin += 1;
+            return win;
         } else if (computerSelection === "scissors") {
-            console.log("Scissors and scissors. It's a tie!");
-            return roundTie += 1;
+            return tie;
         }
     }
 }
@@ -77,11 +82,6 @@ function game() {
         console.log("You got a tie in the best of 5! What are the odds?")
     }
 }
-
-game();
-
-let playerSelection = getPlayerChoice;
-let computerSelection = getComputerChoice();
 
 /* Things to add in future:
 Looping game() that continues until roundWin + roundLose + roundTie = 5
